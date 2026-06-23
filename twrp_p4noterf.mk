@@ -1,8 +1,15 @@
-# OrangeFox for p4noterf
-
+# Указываем базовые параметры устройства
+PRODUCT_DEVICE := p4noterf
+PRODUCT_NAME := twrp_p4noterf
+PRODUCT_BRAND := samsung
+PRODUCT_MODEL := Galaxy Note 10.1
+PRODUCT_MANUFACTURER := samsung
 PRODUCT_RELEASE_NAME := p4noterf
 
 DEVICE_PATH := device/samsung/p4noterf
+
+# Наследование базовых конфигураций Omni/TWRP (необходимых для сборки рекавери)
+$(call inherit-product, build/make/target/product/embedded.mk)
 
 # OrangeFox flags
 OF_USE_MAGISK_ZIP := 1
@@ -16,7 +23,3 @@ OF_USE_TAR := 1
 OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
-
-# Наследование
-$(call inherit-product-if-exists, $(DEVICE_PATH)/n8000.mk)
-$(call inherit-product-if-exists, $(DEVICE_PATH)/lineage.mk)

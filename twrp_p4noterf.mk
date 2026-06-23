@@ -9,7 +9,7 @@ PRODUCT_RELEASE_NAME := p4noterf
 DEVICE_PATH := device/samsung/p4noterf
 
 # Наследование базовых конфигураций Omni/TWRP (необходимых для сборки рекавери)
-$(call inherit-product, build/make/target/product/embedded.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
 # OrangeFox flags
 OF_USE_MAGISK_ZIP := 1

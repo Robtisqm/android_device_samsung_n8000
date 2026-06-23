@@ -16,8 +16,8 @@
 
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/n8000.mk \
-    $(LOCAL_DIR)/fox_p4noterf.mk
+    $(LOCAL_DIR)/twrp_p4noterf.mk
 
 COMMON_LUNCH_CHOICES := \
     lineage_n8000-userdebug \
-    fox_p4noterf-eng
+    twrp_p4noterf-userdebug

@@ -1,7 +1,7 @@
-# Родные настройки ядра и базовой сборки Android 12
-$(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
+# Наследуем базовые настройки Android 12 (base.mk вместо embedded.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# ПРАВИЛЬНОЕ наследование конфигурации OrangeFox / TWRP для Android 12
+# Наследование конфигурации OrangeFox
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Идентификация устройства
@@ -28,12 +28,6 @@ OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
 
-# Локализация и таймзона
+# Таймзона
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.allow.mock.location=0 \
-    ro.debuggable=1 \
     persist.sys.timezone=Asia/Tashkent
-
-# Наследование локальных конфигов дерева (если они есть)
-$(call inherit-product-if-exists, $(DEVICE_PATH)/n8000.mk)
-$(call inherit-product-if-exists, $(DEVICE_PATH)/lineage.mk)

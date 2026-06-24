@@ -14,14 +14,17 @@ TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 
 # Флаги ядра (Kernel)
-# Указываем компилятору использовать твой дефконфиг
 TARGET_KERNEL_CONFIG := twrp_n80xx_defconfig
-# Для старых устройств Exynos часто требуется кастомный компилятор или обертка ядра
 TARGET_USES_EXYNOS_4412_KERNEL := true
 
 # Флаги TWRP / OrangeFox
 RECOVERY_VARIANT := twrp
 TARGET_RECOVERY_DEVICE_MODULES := true
-TW_THEME := landscape_mdpi
+
+# Настройки экрана и темы под твой Note 10.1 (1280x800)
+TARGET_SCREEN_WIDTH := 1280
+TARGET_SCREEN_HEIGHT := 800
+TW_THEME := landscape_hdpi
+
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255

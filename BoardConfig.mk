@@ -21,10 +21,10 @@ TARGET_USES_EXYNOS_4412_KERNEL := true
 RECOVERY_VARIANT := twrp
 TARGET_RECOVERY_DEVICE_MODULES := true
 
-# Настройки экрана и темы под твой Note 10.1 (1280x800)
-TARGET_SCREEN_WIDTH := 1280
-TARGET_SCREEN_HEIGHT := 800
-TW_THEME := landscape_hdpi
+# Настройки экрана и темы (Портретный режим для совместимости с Android 12)
+TARGET_SCREEN_WIDTH := 800
+TARGET_SCREEN_HEIGHT := 1280
+TW_THEME := portrait_hdpi
 
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255

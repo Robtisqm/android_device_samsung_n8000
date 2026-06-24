@@ -32,6 +32,7 @@ TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 # Флаги ядра (Kernel)
 TARGET_KERNEL_CONFIG := twrp_n80xx_defconfig
 TARGET_USES_EXYNOS_4412_KERNEL := true
+BOARD_KERNEL_IMAGE_NAME := zImage
 
 # Флаги TWRP / OrangeFox
 RECOVERY_VARIANT := twrp

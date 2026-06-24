@@ -1,11 +1,11 @@
 #
-# Copyright (C) 2012 The CyanogenMod Project
+# Copyright (C) 2026 The OrangeFox Recovery Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,7 +15,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_p4noterf.mk
+    $(LOCAL_DIR)/omni_p4noterf.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_p4noterf-userdebug
+    omni_p4noterf-eng

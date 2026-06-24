@@ -1,4 +1,5 @@
-# Указываем базовые параметры устройства
+# OrangeFox Recovery for Samsung GT-N8000 (p4noterf)
+
 PRODUCT_DEVICE := p4noterf
 PRODUCT_NAME := twrp_p4noterf
 PRODUCT_BRAND := samsung
@@ -8,10 +9,10 @@ PRODUCT_RELEASE_NAME := p4noterf
 
 DEVICE_PATH := device/samsung/p4noterf
 
-# Наследование базовых конфигураций Omni/TWRP (необходимых для сборки рекавери)
+# Базовое наследование
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# OrangeFox flags
+# OrangeFox / TWRP флаги
 OF_USE_MAGISK_ZIP := 1
 OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
 OF_AB_DEVICE := 0
@@ -23,3 +24,7 @@ OF_USE_TAR := 1
 OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
+
+# Наследуем основные конфиги устройства
+$(call inherit-product-if-exists, $(DEVICE_PATH)/n8000.mk)
+$(call inherit-product-if-exists, $(DEVICE_PATH)/lineage.mk)

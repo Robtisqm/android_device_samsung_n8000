@@ -1,18 +1,4 @@
-#
-# Copyright (C) 2026 The OrangeFox Recovery Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+LOCAL_PATH := device/samsung/p4noterf
 
 # Настройки архитектуры процессора (Exynos 4412 / Cortex-A9)
 TARGET_ARCH := arm
@@ -29,16 +15,25 @@ TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 # Проверка устройства при прошивке
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 
-# Флаги ядра (Kernel)
-TARGET_KERNEL_CONFIG := twrp_n80xx_defconfig
-TARGET_USES_EXYNOS_4412_KERNEL := true
-BOARD_KERNEL_IMAGE_NAME := zImage
+# Отключаем компиляцию ядра и подсовываем готовое (Prebuilt)
+# ВАЖНО: положите рабочий файл ядра из TWRP/Lineage в папку устройства и назовите его zImage
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/zImage
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200n8 androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x40000000
+BOARD_KERNEL_PAGESIZE := 2048
 
-# Флаги TWRP / OrangeFox
-RECOVERY_VARIANT := twrp
-TARGET_RECOVERY_DEVICE_MODULES := true
+# Разрешаем сборку со старыми бинарниками и отключаем строгие проверки Android 12
+ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
-# Настройки экрана и темы (Принудительный оверрайд для обхода ограничений компилятора)
+# Размеры разделов (Обязательно для разметки рекавери!)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+BOARD_FLASH_BLOCK_SIZE := 4096
+
+# Настройки экрана и темы (Оверрайды для обхода ограничений компилятора)
 override TARGET_SCREEN_WIDTH := 800
 override TARGET_SCREEN_HEIGHT := 1280
 override TW_THEME := portrait_hdpi
@@ -46,3 +41,9 @@ override TW_THEME := portrait_hdpi
 # Подсветка экрана
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
+
+# Спецификация OrangeFox
+FOX_VERSION := R12.1_Unofficial
+FOX_BUILD_TYPE := Unofficial
+FOX_R11 := 1
+FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1

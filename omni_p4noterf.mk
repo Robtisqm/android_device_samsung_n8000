@@ -1,7 +1,7 @@
 # OrangeFox Recovery for Samsung GT-N8000 (p4noterf)
 
 PRODUCT_DEVICE := p4noterf
-PRODUCT_NAME := twrp_p4noterf
+PRODUCT_NAME := omni_p4noterf
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := Galaxy Note 10.1
 PRODUCT_MANUFACTURER := samsung
@@ -9,7 +9,7 @@ PRODUCT_RELEASE_NAME := p4noterf
 
 DEVICE_PATH := device/samsung/p4noterf
 
-# Базовое наследование (используем full_base вместо голого base)
+# Базовое наследование
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/twrp/config/common.mk)
 
@@ -27,7 +27,7 @@ OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
 
-# Настройки графики
+# Настройки графики (используем portrait, так как landscape_hdpi нет в Android 12)
 TW_THEME := portrait_hdpi
 TARGET_SCREEN_WIDTH := 800
 TARGET_SCREEN_HEIGHT := 1280

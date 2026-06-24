@@ -20,14 +20,14 @@ OF_AB_DEVICE := 0
 OF_NO_TREBLE := 1
 OF_NO_BOOTLOGO := 0
 OF_BOOT_LOGO := 1
-OF_SCREEN_DIMENSIONS := 1280x800
+OF_SCREEN_DIMENSIONS := 800x1280
 OF_FL_PATH := /sdcard
 OF_USE_TAR := 1
 OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
 
-# Настройки графики (используем portrait, так как landscape_hdpi нет в Android 12)
+# Настройки графики (используем portrait для обхода ошибки компиляции)
 TW_THEME := portrait_hdpi
 TARGET_SCREEN_WIDTH := 800
 TARGET_SCREEN_HEIGHT := 1280

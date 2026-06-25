@@ -32,7 +32,7 @@ BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 
 # Размеры разделов (Обязательно для разметки рекавери!)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_FLASH_BLOCK_SIZE := 4096
 
 # Настройки экрана и темы (Оверрайды для обхода ограничений компилятора)

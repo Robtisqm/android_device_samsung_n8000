@@ -64,3 +64,6 @@ TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_OPENAES := true
+
+# Fix for libbinder error
+LIBBINDER_VERSION_SCRIPT := frameworks/native/libs/binder/libbinder.arm32.map

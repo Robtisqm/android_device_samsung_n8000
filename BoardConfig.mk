@@ -12,6 +12,10 @@ TARGET_BOARD_PLATFORM := exynos4
 TARGET_SOC := exynos4412
 TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 
+
+# Для libbinder
+TARGET_LD_SHIM_LIBS :=
+
 # Проверка устройства при прошивке
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
@@ -50,22 +54,9 @@ FOX_USE_NANO_EDITOR := 1
 FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined -Wl,--undefined-version
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 
 
 # Языки (чтобы не раздувать рекавери, оставим русский и английский)
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_DEFAULT_LANGUAGE := ru
-
-#|                       FIXES                        |
-# Отключаем использование устаревшей библиотеки OpenAES
-# Рубим крипту под корень, чтобы не искало libopenaes
-TW_INCLUDE_CRYPTO := false
-TW_INCLUDE_CRYPTO_FBE := false
-TW_EXCLUDE_ENCRYPTED_BACKUPS := true
-TW_EXCLUDE_OPENAES := true
-
-# Fix for libbinder error
-LIBBINDER_VERSION_SCRIPT := frameworks/native/libs/binder/libbinder.arm32.map
-PRODUCT_PACKAGES += libbinder
-$(shell sed -i 's/version_script: "libbinder.map"/version_script: ""/g' frameworks/native/libs/binder/Android.bp)

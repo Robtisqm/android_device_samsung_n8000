@@ -45,3 +45,4 @@ TW_MAX_BRIGHTNESS := 255
 # Спецификация OrangeFox
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
+TARGET_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined

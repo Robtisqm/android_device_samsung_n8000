@@ -66,3 +66,4 @@ TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_OPENAES := true
 #recomended AI (libbinder)
 BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version
+DISABLE_RUST_DEVICE_SANITIZE := true

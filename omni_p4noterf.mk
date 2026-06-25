@@ -31,3 +31,7 @@ OF_KEEP_FORCEENCRYPT := 1
 # Таймзона
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.timezone=Asia/Tashkent
+
+
+# Для libbinder
+TARGET_LD_SHIM_LIBS :=

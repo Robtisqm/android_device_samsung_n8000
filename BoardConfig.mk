@@ -12,10 +12,6 @@ TARGET_BOARD_PLATFORM := exynos4
 TARGET_SOC := exynos4412
 TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 
-
-# Для libbinder
-TARGET_LD_SHIM_LIBS :=
-
 # Проверка устройства при прошивке
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version

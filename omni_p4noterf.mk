@@ -1,43 +1,66 @@
-# Родные настройки ядра и базовой сборки Android 12
-$(call inherit-product, $(SRC_TARGET_DIR)/product/embedded.mk)
-# Наследуем базовые настройки Android 12 (base.mk вместо embedded.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+LOCAL_PATH := device/samsung/p4noterf
 
-# ПРАВИЛЬНОЕ наследование конфигурации OrangeFox / TWRP для Android 12
-# Наследование конфигурации OrangeFox
-$(call inherit-product, vendor/twrp/config/common.mk)
+# Настройки архитектуры процессора (Exynos 4412 / Cortex-A9)
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_VARIANT := cortex-a9
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
 
-# Идентификация устройства
-PRODUCT_DEVICE := p4noterf
-PRODUCT_NAME := omni_p4noterf
-PRODUCT_BRAND := samsung
-PRODUCT_MODEL := Galaxy Note 10.1 (GT-N8000)
-PRODUCT_MANUFACTURER := samsung
-PRODUCT_RELEASE_NAME := p4noterf
+# Специфика платформы
+TARGET_BOARD_PLATFORM := exynos4
+TARGET_SOC := exynos4412
+TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 
-DEVICE_PATH := device/samsung/p4noterf
+# Проверка устройства при прошивке
+TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
 
-# Настройки OrangeFox
-OF_USE_MAGISK_ZIP := 1
-OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
-OF_AB_DEVICE := 0
-OF_NO_TREBLE := 1
-OF_NO_BOOTLOGO := 0
-OF_BOOT_LOGO := 1
-OF_SCREEN_DIMENSIONS := 800x1280
-OF_FL_PATH := /sdcard
-OF_USE_TAR := 1
-OF_USE_TWRP := 1
-OF_KEEP_DM_VERITY := 1
-OF_KEEP_FORCEENCRYPT := 1
+# Отключаем компиляцию ядра и подсовываем готовое (Prebuilt)
+# ВАЖНО: положите рабочий файл ядра из TWRP/Lineage в папку устройства и назовите его zImage
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/zImage
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200n8 androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x40000000
+BOARD_KERNEL_PAGESIZE := 2048
 
-# Локализация и таймзона
-# Таймзона
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.allow.mock.location=0 \
-    ro.debuggable=1 \
-    persist.sys.timezone=Asia/Tashkent
+# Разрешаем сборку со старыми бинарниками и отключаем строгие проверки Android 12
+ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 
-# Наследование локальных конфигов дерева (если они есть)
-$(call inherit-product-if-exists, $(DEVICE_PATH)/n8000.mk)
-$(call inherit-product-if-exists, $(DEVICE_PATH)/lineage.mk)
+# Размеры разделов (Обязательно для разметки рекавери!)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
+BOARD_FLASH_BLOCK_SIZE := 4096
+
+# Настройки экрана и темы (Оверрайды для обхода ограничений компилятора)
+override TARGET_SCREEN_WIDTH := 800
+override TARGET_SCREEN_HEIGHT := 1280
+override TW_THEME := portrait_hdpi
+
+# Подсветка экрана
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
+TW_MAX_BRIGHTNESS := 255
+
+# Спецификация OrangeFox
+FOX_USE_NANO_EDITOR := 1
+FOX_RESET_STATUSBAR := 1
+FOX_BUILD_TYPE := Unofficial
+FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
+
+
+# Языки (чтобы не раздувать рекавери, оставим русский и английский)
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_DEFAULT_LANGUAGE := ru
+
+#|                       FIXES                        |
+# Отключаем использование устаревшей библиотеки OpenAES
+# Рубим крипту под корень, чтобы не искало libopenaes
+TW_INCLUDE_CRYPTO := false
+TW_INCLUDE_CRYPTO_FBE := false
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_EXCLUDE_OPENAES := true

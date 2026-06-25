@@ -14,6 +14,7 @@ TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 
 # Проверка устройства при прошивке
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
 
 # Отключаем компиляцию ядра и подсовываем готовое (Prebuilt)
 # ВАЖНО: положите рабочий файл ядра из TWRP/Lineage в папку устройства и назовите его zImage

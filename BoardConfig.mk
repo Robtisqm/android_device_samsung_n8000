@@ -27,6 +27,8 @@ ALLOW_MISSING_DEPENDENCIES := true
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 
 # Размеры разделов (Обязательно для разметки рекавери!)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -43,6 +45,13 @@ TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
 
 # Спецификация OrangeFox
+FOX_USE_NANO_EDITOR := 1
+FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
 TARGET_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
+
+
+# Языки (чтобы не раздувать рекавери, оставим русский и английский)
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_DEFAULT_LANGUAGE := ru

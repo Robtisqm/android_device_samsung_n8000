@@ -35,3 +35,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Для обхода старых библиотек binder
 TARGET_LD_SHIM_LIBS :=
+
+# Копируем fstab в ramdisk рекавери
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/recovery.fstab:recovery/root/etc/twrp.fstab

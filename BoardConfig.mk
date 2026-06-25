@@ -43,7 +43,5 @@ TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
 
 # Спецификация OrangeFox
-FOX_VERSION := R12.1_Unofficial
 FOX_BUILD_TYPE := Unofficial
-FOX_R11 := 1
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1

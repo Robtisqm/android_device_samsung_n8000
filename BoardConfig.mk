@@ -64,3 +64,5 @@ TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_OPENAES := true
+#recomended AI (libbinder)
+BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version

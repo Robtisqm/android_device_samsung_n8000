@@ -14,7 +14,6 @@ TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 
 # Проверка устройства при прошивке
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
 
 # Отключаем компиляцию ядра и подсовываем готовое (Prebuilt)
 # ВАЖНО: положите рабочий файл ядра из TWRP/Lineage в папку устройства и назовите его zImage
@@ -50,7 +49,7 @@ FOX_USE_NANO_EDITOR := 1
 FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined -Wl,--undefined-version
 
 
 # Языки (чтобы не раздувать рекавери, оставим русский и английский)

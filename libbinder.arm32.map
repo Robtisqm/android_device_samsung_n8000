@@ -1,0 +1,6 @@
+LIBBINDER {
+  global:
+    *;
+  local:
+    *;
+};

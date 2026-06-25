@@ -58,4 +58,8 @@ TW_DEFAULT_LANGUAGE := ru
 
 #|                       FIXES                        |
 # Отключаем использование устаревшей библиотеки OpenAES
+# Рубим крипту под корень, чтобы не искало libopenaes
+TW_INCLUDE_CRYPTO := false
+TW_INCLUDE_CRYPTO_FBE := false
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_OPENAES := true

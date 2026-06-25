@@ -67,3 +67,4 @@ TW_EXCLUDE_OPENAES := true
 #recomended AI (libbinder)
 BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version
 DISABLE_RUST_DEVICE_SANITIZE := true
+TARGET_USES_64_BIT_BINDER := false

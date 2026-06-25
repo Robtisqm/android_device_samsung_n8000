@@ -55,3 +55,7 @@ TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 # Языки (чтобы не раздувать рекавери, оставим русский и английский)
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_DEFAULT_LANGUAGE := ru
+
+#|                       FIXES                        |
+# Отключаем использование устаревшей библиотеки OpenAES
+TW_EXCLUDE_OPENAES := true

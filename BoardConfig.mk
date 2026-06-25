@@ -67,3 +67,4 @@ TW_EXCLUDE_OPENAES := true
 
 # Fix for libbinder error
 LIBBINDER_VERSION_SCRIPT := frameworks/native/libs/binder/libbinder.arm32.map
+PRODUCT_PACKAGES += libbinder

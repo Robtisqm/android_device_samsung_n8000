@@ -49,7 +49,7 @@ FOX_USE_NANO_EDITOR := 1
 FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
-TARGET_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 
 
 # Языки (чтобы не раздувать рекавери, оставим русский и английский)

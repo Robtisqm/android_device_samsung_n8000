@@ -22,14 +22,13 @@ BOARD_KERNEL_CMDLINE := console=ttySAC2,115200n8 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-# Разрешаем сборку со старыми бинарниками и отключаем строгие проверки Android 11/12
+# Разрешаем сборку со старыми бинарниками и отключаем строгие проверки Android 11
 ALLOW_MISSING_DEPENDENCIES := true
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 
 # Размеры разделов (Разметка твоего GT-N8000)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -53,14 +52,12 @@ FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
 
 # Глобальные хаки линкера для обхода ошибок старого кода
 TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version
-BOARD_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 
 # Языки и локализация
 TW_DEFAULT_LANGUAGE := ru
 
-# Вырезаем шифрование данных (Для Exynos 4 2012 года оно избыточно и ломает сборку)
+# Вырезаем шифрование данных (Для Exynos 4 оно ломает сборку)
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true

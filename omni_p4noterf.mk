@@ -1,4 +1,4 @@
-# Наследуем базовые настройки Android 12
+# Наследуем базовые настройки Android
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
 # Наследование конфигурации OrangeFox / TWRP
@@ -15,7 +15,7 @@ PRODUCT_RELEASE_NAME := p4noterf
 # Путь к дереву устройства
 DEVICE_PATH := device/samsung/p4noterf
 
-# Настройки OrangeFox (убраны дубли)
+# Настройки флагов компиляции OrangeFox
 OF_USE_MAGISK_ZIP := 1
 OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
 OF_AB_DEVICE := 0
@@ -29,13 +29,10 @@ OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
 
-# Таймзона (Самарканд/Ташкент)
+# Выставляем родной часовой пояс (Узбекистан)
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.timezone=Asia/Tashkent
 
-# Для обхода старых библиотек binder
-TARGET_LD_SHIM_LIBS :=
-
-# Копируем fstab в ramdisk рекавери
+# Копируем fstab в ramdisk рекавери (Используем современный синтаксис v2 ниже)
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/recovery.fstab:recovery/root/etc/twrp.fstab
+    $(DEVICE_PATH)/recovery.fstab:recovery/root/system/etc/recovery.fstab

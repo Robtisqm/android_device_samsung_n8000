@@ -33,6 +33,6 @@ OF_KEEP_FORCEENCRYPT := 1
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.timezone=Asia/Tashkent
 
-# Копируем fstab в ramdisk рекавери (Используем современный синтаксис v2 ниже)
+# Копируем fstab в ramdisk рекавери
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/recovery.fstab:recovery/root/system/etc/recovery.fstab

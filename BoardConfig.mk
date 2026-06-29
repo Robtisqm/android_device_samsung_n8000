@@ -29,6 +29,8 @@ BUILD_BROKEN_PREBUILT_ELF_FILES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
+BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true
+BUILD_BROKEN_BUILD_FROM_SOURCE_IMAGE := true
 
 # Размеры разделов (Обязательно для разметки рекавери!)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
@@ -50,12 +52,10 @@ FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
 
-# Глобальные флаги линкера для Soong/Clang (дублируем на всякий случай)
-TARGET_GLOBAL_LDFLAGS += -Wl,--undefined-version
-TARGET_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
-BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version
+# Глобальные флаги линкера для Soong/Clang (Жесткий оверрайд)
+TARGET_GLOBAL_LDFLAGS += -Wl,--undefined-version -Wl,--allow-shlib-undefined
+TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version -Wl,--allow-shlib-undefined
+BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version -Wl,--allow-shlib-undefined
 
 # Языки
 TW_DEFAULT_LANGUAGE := ru

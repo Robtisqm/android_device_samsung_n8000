@@ -16,7 +16,7 @@ TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 
 # Отключаем компиляцию ядра и подсовываем готовое (Prebuilt)
-# ВАЖНО: положите рабочий файл ядра zImage в папку устройства
+# ВАЖНО: убедись, что рабочий файл ядра zImage лежит в корне папки устройства!
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/zImage
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200n8 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40000000
@@ -51,22 +51,23 @@ FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
 
-# Глобальные хаки линкера для обхода ограничений Android 12
+# Глобальные флаги линкера для Soong/Clang (дублируем на всякий случай)
+TARGET_GLOBAL_LDFLAGS += -Wl,--undefined-version
+TARGET_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
 TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version
-BOARD_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 
-# Языки (чтобы не раздувать рекавери, оставим русский)
+# Языки (оставим русский по умолчанию)
 TW_DEFAULT_LANGUAGE := ru
 
-# Рубим крипту под корень, чтобы не искало libopenaes
+# Рубим крипту под корень, чтобы сборщик не искал библиотеки шифрования Android 12
 TW_INCLUDE_CRYPTO := false
 TW_INCLUDE_CRYPTO_FBE := false
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_OPENAES := true
 
-# Ограничение разрядности под старую платформу
+# Отключаем 64-битную разрядность под старую платформу
 DISABLE_RUST_DEVICE_SANITIZE := true
 TARGET_USES_64_BIT_BINDER := false
 TARGET_SUPPORTS_64_BIT_APPS := false

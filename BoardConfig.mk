@@ -52,11 +52,6 @@ FOX_RESET_STATUSBAR := 1
 FOX_BUILD_TYPE := Unofficial
 FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER := 1
 
-# Глобальные флаги линкера для Soong/Clang (Жесткий оверрайд)
-TARGET_GLOBAL_LDFLAGS += -Wl,--undefined-version -Wl,--allow-shlib-undefined
-TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version -Wl,--allow-shlib-undefined
-BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version -Wl,--allow-shlib-undefined
-
 # Языки
 TW_DEFAULT_LANGUAGE := ru
 

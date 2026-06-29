@@ -16,7 +16,6 @@ TARGET_BOOTLOADER_BOARD_NAME := smdk4412
 TARGET_OTA_ASSERT_DEVICE := c0,p4noterf,p4noterfxx,n8000,GT-N8000
 
 # Отключаем компиляцию ядра и подсовываем готовое (Prebuilt)
-# ВАЖНО: убедись, что рабочий файл ядра zImage лежит в корне папки устройства!
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/zImage
 BOARD_KERNEL_CMDLINE := console=ttySAC2,115200n8 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40000000
@@ -58,7 +57,7 @@ TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--undefined-version
 TARGET_CLANG_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 BOARD_GLOBAL_LDFLAGS += -Wl,--undefined-version
 
-# Языки (оставим русский по умолчанию)
+# Языки
 TW_DEFAULT_LANGUAGE := ru
 
 # Рубим крипту под корень, чтобы сборщик не искал библиотеки шифрования Android 12

@@ -1,5 +1,5 @@
 PRODUCT_MAKEFILES := \
-    device/samsung/p4noterf/omni_p4noterf.mk
+    $(LOCAL_DIR)/omni_p4noterf.mk
 
 COMMON_LUNCH_CHOICES := \
     omni_p4noterf-eng \

@@ -33,6 +33,7 @@ OF_KEEP_FORCEENCRYPT := 1
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.timezone=Asia/Tashkent
 
-# Копируем fstab в ramdisk рекавери (путь адаптирован под новые правила монтирования)
+# Копируем fstab и в классический корень, и в system (для обхода багов Android 12 SAR)
 PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/recovery.fstab:recovery/root/etc/recovery.fstab \
     $(DEVICE_PATH)/recovery.fstab:recovery/root/system/etc/recovery.fstab

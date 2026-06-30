@@ -15,6 +15,4 @@
 #
 
 LOCAL_PATH := $(call my-dir)
-
-# Разрешаем подгрузку всех подпапок (включая нашу заглушку libopenaes) для любого целевого устройства
 include $(call all-makefiles-under,$(LOCAL_PATH))

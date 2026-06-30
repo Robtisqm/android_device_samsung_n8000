@@ -1,10 +1,10 @@
-# Наследуем базовые настройки Android 12
+# Inherit basic Android 12 configurations
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
-# Наследование конфигурации OrangeFox / TWRP
+# Inherit OrangeFox / TWRP configurations
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Идентификация устройства
+# Device identification
 PRODUCT_DEVICE := p4noterf
 PRODUCT_NAME := omni_p4noterf
 PRODUCT_BRAND := samsung
@@ -12,10 +12,10 @@ PRODUCT_MODEL := Galaxy Note 10.1
 PRODUCT_MANUFACTURER := samsung
 PRODUCT_RELEASE_NAME := p4noterf
 
-# Путь к дереву устройства
+# Path to the device tree
 DEVICE_PATH := device/samsung/p4noterf
 
-# Настройки флагов компиляции OrangeFox
+# OrangeFox compilation flag settings
 OF_USE_MAGISK_ZIP := 1
 OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
 OF_AB_DEVICE := 0
@@ -29,11 +29,11 @@ OF_USE_TWRP := 1
 OF_KEEP_DM_VERITY := 1
 OF_KEEP_FORCEENCRYPT := 1
 
-# Выставляем часовой пояс
+# Set the default timezone
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.timezone=Asia/Tashkent
 
-# Копируем fstab и в классический корень, и в system (для обхода багов Android 12 SAR)
+# Copy fstab to both classic root and system (to bypass Android 12 SAR bugs)
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/recovery.fstab:recovery/root/etc/recovery.fstab \
     $(DEVICE_PATH)/recovery.fstab:recovery/root/system/etc/recovery.fstab
